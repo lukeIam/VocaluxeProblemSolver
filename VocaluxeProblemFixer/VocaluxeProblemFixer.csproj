@@ -46,10 +46,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Trinet.Core.IO.Ntfs">
+      <HintPath>..\packages\Trinet.Core.IO.Ntfs\Trinet.Core.IO.Ntfs.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader.cs" />
     <Compile Include="Jobs\IJob.cs" />
+    <Compile Include="Jobs\BlockedFilesCheck.cs" />
     <Compile Include="Jobs\SingStarMicCheck.cs" />
     <Compile Include="Jobs\DirectX9CCheck.cs" />
     <Compile Include="Jobs\DownloadJob.cs" />
