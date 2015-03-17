@@ -14,5 +14,6 @@ At the moment it can detect and fix the following problems:
 - No gstreamer
 - gstreamer not fully installed (no mp3 codec)
 - SingStar microphones configured to use only one channel (standard setting)
+- Unblock blocked files
 
 [Download VocaluxeProblemSolver](https://github.com/lukeIam/VocaluxeProblemSolver/raw/master/Release/VocaluxeProblemSolver.exe)
