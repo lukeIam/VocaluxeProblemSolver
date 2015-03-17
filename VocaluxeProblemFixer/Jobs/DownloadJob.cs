@@ -11,7 +11,7 @@ namespace VocaluxeProblemFixer.Jobs
     {
         public abstract void Start();
 
-        protected void DownloadAndInstall(string url)
+        protected void DownloadAndInstall(string url, string runParameter)
         {
             Console.WriteLine("Download: " + url);
             var setup = Downloader.DownloadFile(url);
@@ -21,7 +21,7 @@ namespace VocaluxeProblemFixer.Jobs
 
                 ProcessStartInfo startInfo = new ProcessStartInfo(setup.FullName)
                 {
-                    Arguments = @"/passive /norestart",
+                    Arguments = runParameter,
                     UseShellExecute = true,
                     Verb = "runas"
                 };

@@ -6,7 +6,7 @@ namespace VocaluxeProblemFixer.Jobs
 {
     abstract class RegistryCheckAndDownloadJob : DownloadJob
     {
-        protected void Check(string key, string url, string name)
+        protected void Check(string key, string url, string name, string parameter)
         {
             if (
                 RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(
@@ -15,7 +15,7 @@ namespace VocaluxeProblemFixer.Jobs
                     key) == null)
             {
                 Console.WriteLine(name + " is missing.");
-                DownloadAndInstall(url);
+                DownloadAndInstall(url, parameter);
             }
             else
             {

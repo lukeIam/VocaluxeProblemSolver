@@ -25,7 +25,7 @@ namespace VocaluxeProblemFixer.Jobs
             {
                 Console.WriteLine("directX 9.0c is missing.");
                 DownloadAndInstall(
-                   @"http://download.microsoft.com/download/8/0/d/80d7e79d-c0e4-415a-bcca-e229eafe2679/dxwebsetup.exe");
+                   @"http://download.microsoft.com/download/8/0/d/80d7e79d-c0e4-415a-bcca-e229eafe2679/dxwebsetup.exe", @"/Q");
 
 
             }
