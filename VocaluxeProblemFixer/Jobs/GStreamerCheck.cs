@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 
@@ -56,27 +57,49 @@ namespace VocaluxeProblemFixer.Jobs
         {
             Console.WriteLine("Download: " + url);
             var setup = Downloader.DownloadFile(url);
-            Console.WriteLine("Download successfull.");
-            //C:\Users\lucas_000\AppData\Local\Temp\VocaluxeFixer\gstreamer-1.0-x86_64-1.4.5.msi
-            //setup.FullName
-            ProcessStartInfo startInfo = new ProcessStartInfo("msiexec.exe")
+            if (setup != null && setup.Exists)
             {
-                Arguments = @"/package " + @"C:\Users\lucas_000\AppData\Local\Temp\VocaluxeFixer\gstreamer-1.0-x86_64-1.4.5.msi" + @" /passive /norestart ADDLOCAL=_gstreamer_1.0",
-                UseShellExecute = true,
-                Verb = "runas"
-            };
+                Console.WriteLine("Download successfull.");
+                
+                ProcessStartInfo startInfo = new ProcessStartInfo("msiexec.exe")
+                {
+                    Arguments = @"/package " + @"C:\Users\lucas_000\AppData\Local\Temp\VocaluxeFixer\gstreamer-1.0-x86_64-1.4.5.msi" + @" /passive /norestart ADDLOCAL=_gstreamer_1.0",
+                    UseShellExecute = true,
+                    Verb = "runas"
+                };
 
-            var process = Process.Start(startInfo);
+                Process process = null;
+                try
+                {
+                    process = Process.Start(startInfo);
+                }
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine("Error while installing (FileNotFound): " + setup.FullName);
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
+                }
+                catch (Win32Exception e)
+                {
+                    Console.WriteLine("Error while installing (Win32): " + setup.FullName);
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
+                }
 
-            if (process != null)
-            {
-                process.WaitForExit();
-                Console.WriteLine("Installation successfull.");
-                setup.Delete();
+                if (process != null)
+                {
+                    process.WaitForExit();
+                    Console.WriteLine("Installation successfull.");
+                    setup.Delete();
+                }
+                else
+                {
+                    Console.WriteLine("Installation failed.");
+                }
             }
             else
             {
-                Console.WriteLine("Installation failed.");
+                Console.WriteLine("Download failed.");
             }
         }
     }
