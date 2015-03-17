@@ -45,7 +45,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\VocaluxeProblemFixer\bin\Release\VocaluxeFixer.exe" />
     <None Include="..\VocaluxeProblemFixer\bin\Release\VocaluxeProblemFixer.exe" />
   </ItemGroup>
   <ItemGroup>

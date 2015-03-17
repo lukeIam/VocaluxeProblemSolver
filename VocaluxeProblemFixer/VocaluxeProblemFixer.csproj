@@ -52,8 +52,10 @@
     <Compile Include="Jobs\IJob.cs" />
     <Compile Include="Jobs\SingStarMicCheck.cs" />
     <Compile Include="Jobs\DirectX9CCheck.cs" />
+    <Compile Include="Jobs\DownloadJob.cs" />
     <Compile Include="Jobs\Vcredist2010Check.cs" />
     <Compile Include="Jobs\GStreamerCheck.cs" />
+    <Compile Include="Jobs\RegistryCheckAndDownloadJob.cs" />
     <Compile Include="Jobs\Vcredist2012Check.cs" />
     <Compile Include="Mic\Microphone.cs" />
     <Compile Include="Mic\Native.cs" />

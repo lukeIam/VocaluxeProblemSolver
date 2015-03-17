@@ -6,9 +6,9 @@ using System.IO;
 
 namespace VocaluxeProblemFixer.Jobs
 {
-    class GStreamerCheck : IJob
+    class GStreamerCheck : DownloadJob
     {
-        public void Start()
+        public override void Start()
         {
             Console.WriteLine("Start checking for gstreamer.");
             if (Environment.Is64BitOperatingSystem)
@@ -50,56 +50,6 @@ namespace VocaluxeProblemFixer.Jobs
             else
             {
                 Console.WriteLine("Found gstreamer x64.");
-            }
-        }
-
-        private void DownloadAndInstall(string url)
-        {
-            Console.WriteLine("Download: " + url);
-            var setup = Downloader.DownloadFile(url);
-            if (setup != null && setup.Exists)
-            {
-                Console.WriteLine("Download successfull.");
-                
-                ProcessStartInfo startInfo = new ProcessStartInfo("msiexec.exe")
-                {
-                    Arguments = @"/package " + @"C:\Users\lucas_000\AppData\Local\Temp\VocaluxeFixer\gstreamer-1.0-x86_64-1.4.5.msi" + @" /passive /norestart ADDLOCAL=_gstreamer_1.0",
-                    UseShellExecute = true,
-                    Verb = "runas"
-                };
-
-                Process process = null;
-                try
-                {
-                    process = Process.Start(startInfo);
-                }
-                catch (FileNotFoundException e)
-                {
-                    Console.WriteLine("Error while installing (FileNotFound): " + setup.FullName);
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
-                }
-                catch (Win32Exception e)
-                {
-                    Console.WriteLine("Error while installing (Win32): " + setup.FullName);
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
-                }
-
-                if (process != null)
-                {
-                    process.WaitForExit();
-                    Console.WriteLine("Installation successfull.");
-                    setup.Delete();
-                }
-                else
-                {
-                    Console.WriteLine("Installation failed.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Download failed.");
             }
         }
     }
