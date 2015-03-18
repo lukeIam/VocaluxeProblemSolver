@@ -8,9 +8,9 @@ namespace VocaluxeProblemFixer.Jobs
     {
         public override void Start()
         {
-            Console.WriteLine("Start checking for directX 9.0c.");
+            Log.WriteLogLine("Start checking for directX 9.0c.");
             Check();
-            Console.WriteLine("Finshed checking for directX 9.0c.");
+            Log.WriteLogLine("Finshed checking for directX 9.0c.");
 
         }
 
@@ -23,7 +23,7 @@ namespace VocaluxeProblemFixer.Jobs
 
             if (folder == null || folder.GetValue("Version").ToString() != "4.09.00.0904")
             {
-                Console.WriteLine("directX 9.0c is missing.");
+                Log.WriteLogLine("directX 9.0c is missing.");
                 DownloadAndInstall(
                    @"http://download.microsoft.com/download/8/0/d/80d7e79d-c0e4-415a-bcca-e229eafe2679/dxwebsetup.exe", @"/Q");
 
@@ -31,7 +31,7 @@ namespace VocaluxeProblemFixer.Jobs
             }
             else
             {
-                Console.WriteLine("Found directX 9.0c.");
+                Log.WriteSuccessLine("Found directX 9.0c.");
             }
         }
     }

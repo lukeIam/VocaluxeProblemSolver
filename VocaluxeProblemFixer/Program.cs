@@ -8,8 +8,8 @@ namespace VocaluxeProblemFixer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("-----------------------------------------------------\n");
-            Console.WriteLine("Vocaluxe problem fixer by lukeIam\n");
+            Log.WriteLogLine("-----------------------------------------------------\n");
+            Log.WriteLogLine("Vocaluxe problem fixer by lukeIam\n");
             
             List<IJob> checkList = new List<IJob>
             {
@@ -23,11 +23,11 @@ namespace VocaluxeProblemFixer
 
             foreach (var job in checkList)
             {
-                Console.WriteLine("-----------------------------------------------------\n");
+                Log.WriteLogLine("-----------------------------------------------------\n");
                 job.Start();
             }
-            Console.WriteLine("-----------------------------------------------------\n");
-            Console.WriteLine("All checks finished (you may need to restart your computer).");
+            Log.WriteLogLine("-----------------------------------------------------\n");
+            Log.WriteSuccessLine("All checks finished (you may need to restart your computer).");
             Console.ReadKey();
         }
     }

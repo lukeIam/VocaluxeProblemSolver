@@ -61,6 +61,7 @@
     <Compile Include="Jobs\GStreamerCheck.cs" />
     <Compile Include="Jobs\RegistryCheckAndDownloadJob.cs" />
     <Compile Include="Jobs\Vcredist2012Check.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Mic\Microphone.cs" />
     <Compile Include="Mic\Native.cs" />
     <Compile Include="Mic\PolicyConfig.cs" />

@@ -14,7 +14,7 @@ namespace VocaluxeProblemFixer
             Directory.CreateDirectory(tempPath);
             string filename = url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1);
             FileInfo file = new FileInfo(Path.Combine(tempPath, filename)); ;
-            
+
             using (WebClient client = new WebClient())
             {
                 try
@@ -23,9 +23,9 @@ namespace VocaluxeProblemFixer
                 }
                 catch (WebException e)
                 {
-                    Console.WriteLine("Error while downloading file: " + url +" to " +file.FullName);
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
+                    Log.WriteErrorLine("Error while downloading file: " + url + " to " + file.FullName);
+                    Log.WriteErrorLine(e.Message);
+                    Log.WriteErrorLine(e.StackTrace);
                     return null;
                 }
             }

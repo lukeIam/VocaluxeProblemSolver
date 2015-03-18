@@ -2,6 +2,7 @@
 using NAudio.Wave;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace VocaluxeProblemFixer.Mic
 {
@@ -64,10 +65,23 @@ namespace VocaluxeProblemFixer.Mic
 
         public static Dictionary<string, bool> FixSingstarMicrophones()
         {
-            var singstarMics = from m in GetAllMicrophones()
-                               where m.DeviceFriendlyName.StartsWith("USBMIC Serial")
-                               && m.State == DeviceState.Active
-                               select m;
+            IEnumerable<MMDevice> singstarMics;
+
+            try
+            {
+                singstarMics = (from m in GetAllMicrophones()
+                    where m.DeviceFriendlyName.StartsWith("USBMIC Serial")
+                          && m.State == DeviceState.Active
+                    select m).ToList();
+            }
+            catch (COMException e)
+            {
+                Log.WriteErrorLine("Error while accessing microphones.");
+                Log.WriteErrorLine(e.Message);
+                Log.WriteErrorLine(e.StackTrace);
+                singstarMics = new List<MMDevice>();
+            }
+            
 
             return CheckAndFixMics(singstarMics, 2, 16, 48000);
         }

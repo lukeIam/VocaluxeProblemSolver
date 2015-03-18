@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System;
 
 
 namespace VocaluxeProblemFixer.Jobs
@@ -14,12 +13,12 @@ namespace VocaluxeProblemFixer.Jobs
                 RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(
                     key) == null)
             {
-                Console.WriteLine(name + " is missing.");
+                Log.WriteLogLine(name + " is missing.");
                 DownloadAndInstall(url, parameter);
             }
             else
             {
-                Console.WriteLine("Found " + name + ".");
+                Log.WriteSuccessLine("Found " + name + ".");
             }
         }
     }

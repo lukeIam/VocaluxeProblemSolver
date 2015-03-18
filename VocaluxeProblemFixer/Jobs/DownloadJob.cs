@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 
@@ -13,11 +11,11 @@ namespace VocaluxeProblemFixer.Jobs
 
         protected void DownloadAndInstall(string url, string runParameter)
         {
-            Console.WriteLine("Download: " + url);
+            Log.WriteLogLine("Download: " + url);
             var setup = Downloader.DownloadFile(url);
             if (setup != null && setup.Exists)
             {
-                Console.WriteLine("Download successfull.");
+                Log.WriteSuccessLine("Download successfull.");
 
                 ProcessStartInfo startInfo = new ProcessStartInfo(setup.FullName)
                 {
@@ -33,31 +31,31 @@ namespace VocaluxeProblemFixer.Jobs
                 }
                 catch (FileNotFoundException e)
                 {
-                    Console.WriteLine("Error while installing (FileNotFound): " + setup.FullName);
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
+                    Log.WriteErrorLine("Error while installing (FileNotFound): " + setup.FullName);
+                    Log.WriteErrorLine(e.Message);
+                    Log.WriteErrorLine(e.StackTrace);
                 }
                 catch (Win32Exception e)
                 {
-                    Console.WriteLine("Error while installing (Win32): " + setup.FullName);
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
+                    Log.WriteErrorLine("Error while installing (Win32): " + setup.FullName);
+                    Log.WriteErrorLine(e.Message);
+                    Log.WriteErrorLine(e.StackTrace);
                 }
 
                 if (process != null)
                 {
                     process.WaitForExit();
-                    Console.WriteLine("Installation successfull.");
+                    Log.WriteSuccessLine("Installation successfull.");
                     setup.Delete();
                 }
                 else
                 {
-                    Console.WriteLine("Installation failed.");
+                    Log.WriteErrorLine("Installation failed.");
                 }
             }
             else
             {
-                Console.WriteLine("Download failed.");
+                Log.WriteErrorLine("Download failed.");
             }
         }
     }

@@ -1,9 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-
+﻿using System;
 
 namespace VocaluxeProblemFixer.Jobs
 {
@@ -11,7 +6,7 @@ namespace VocaluxeProblemFixer.Jobs
     {
         public override void Start()
         {
-            Console.WriteLine("Start checking for vcredist2010.");
+            Log.WriteLogLine("Start checking for vcredist2010.");
             if (Environment.Is64BitOperatingSystem)
             {
                 Check(@"SOFTWARE\Microsoft\VisualStudio\10.0\VC\VCRedist\x64",
@@ -21,7 +16,7 @@ namespace VocaluxeProblemFixer.Jobs
             Check(@"SOFTWARE\Microsoft\VisualStudio\10.0\VC\VCRedist\x86",
                     @"http://download.microsoft.com/download/C/6/D/C6D0FD4E-9E53-4897-9B91-836EBA2AACD3/vcredist_x86.exe",
                    "vcredist2010 x68", @"/passive /norestart");
-            Console.WriteLine("Finshed checking for vcredist2010.");
+            Log.WriteLogLine("Finshed checking for vcredist2010.");
 
         }
     }
