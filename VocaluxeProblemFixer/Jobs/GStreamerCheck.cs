@@ -90,7 +90,35 @@ namespace VocaluxeProblemFixer.Jobs
                 {
                     process.WaitForExit();
                     Log.WriteSuccessLine("Installation successfull.");
-                    setup.Delete();
+
+                    try
+                    {
+                        setup.Delete();
+                    }
+                    catch (DirectoryNotFoundException e)
+                    {
+                        Log.WriteLogLine("Error while deleting setup file.");
+                        Log.WriteLogLine(e.Message);
+                        Log.WriteLogLine(e.StackTrace);
+                    }
+                    catch (IOException e)
+                    {
+                        Log.WriteLogLine("Error while deleting setup file.");
+                        Log.WriteLogLine(e.Message);
+                        Log.WriteLogLine(e.StackTrace);
+                    }
+                    catch (UnauthorizedAccessException e)
+                    {
+                        Log.WriteLogLine("Error while deleting setup file.");
+                        Log.WriteLogLine(e.Message);
+                        Log.WriteLogLine(e.StackTrace);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Log.WriteLogLine("Error while deleting setup file.");
+                        Log.WriteLogLine(e.Message);
+                        Log.WriteLogLine(e.StackTrace);
+                    }
                 }
                 else
                 {
