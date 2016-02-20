@@ -16,7 +16,7 @@ namespace VocaluxeProblemFixer
                 new Vcredist2010Check(),
                 new Vcredist2012Check(),
                 new DirectX9CCheck(),
-                new GStreamerCheck(),
+                //new GStreamerCheck(),
                 new BlockedFilesCheck(),
                 new SingStarMicCheck()
             };

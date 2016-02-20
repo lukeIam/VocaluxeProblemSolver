@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\VocaluxeProblemFixer\bin\Release\VocaluxeProblemFixer.exe" />
+    <None Include="binary3.bin">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="binary2.bin">
+      <Filter>Ressourcendateien</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico">
